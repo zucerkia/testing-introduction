@@ -1,29 +1,38 @@
 const axios = require('axios');
-const { getAllTodo } = require('./todos');
+const { getAllTodos } = require('./todos');
 
 jest.mock('axios');
 
-describe('todos tests', () => {
-  const fakeTodos = [
-    {
-      userId: 1,
-      id: 1,
-      title: 'delectus aut autem',
-      completed: false,
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'quis ut nam facilis et officia qui',
-      completed: false,
-    },
-  ];
+const fakeResponse = [
+  {
+    userId: 1,
+    id: 12,
+    title: 'ipsa repellendus fugit nisi',
+    completed: true,
+  },
+  {
+    userId: 1,
+    id: 12,
+    title: 'ipsa repellendus fugit nisi',
+    completed: true,
+  },
+  {
+    userId: 1,
+    id: 12,
+    title: 'ipsa repellendus fugit nisi',
+    completed: true,
+  },
+];
 
-  test('debe traer todos los todo', async () => {
-    axios.get.mockResolvedValue({ data: fakeTodos });
+describe('Probar que se traingan todos los todos', () => {
+  test('debe devolver los todos de la api', async () => {
+    // Arrange
+    axios.get.mockResolvedValue({ data: fakeResponse });
 
-    const todos = await getAllTodo();
-    console.log(todos);
-    expect(todos.length).toBe(2);
+    // Act
+    const result = await getAllTodos();
+    console.log(result);
+    // Assert
+    expect(result.length).toBe(3);
   });
 });

@@ -1,17 +1,11 @@
 const axios = require('axios');
 
-const getAllTodo = async () => {
-  let todos = [];
-  try {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
-    todos = response.data;
-  } catch (error) {
-    console.error(error);
-  }
+const getAllTodos = async () => {
+  const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
 
-  return todos;
+  return response.data;
 };
 
 module.exports = {
-  getAllTodo,
+  getAllTodos,
 };
